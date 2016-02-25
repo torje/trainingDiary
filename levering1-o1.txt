@@ -1,0 +1,24 @@
+1. Registrere hvilke øvelser man har gjort under en bestemt treningsøkt, samt hvordan selve treningen har gått.
+ - registreres i økt som består av flere øvelser
+
+2. Holde oversikt over kjente øvelser, sette opp nye mål, og vite hvilke mål man har hatt.
+ - Kjente øvelser lagres som øvelser, oppsett og hihstorie for mål lagres i relasjon mål, der dato blir med i nøkkelen i tillegg til brukerID og øvelseID
+
+3. Se progresjon for en bestemt øvelse over en periode, samt hvilke mål man har hatt.
+ - Progresjon kan sees ved PR (personlig rekord) som lagres med dato, og målene som forklart i punktet over
+
+4. Se differensen mellom et bestemt resultat og det beste resultatet i løpet av siste uke, måned
+eller tre måneder, samt forskjellen mellom det og målet som har vært aktivt i den siste perioden.
+ - Henter fra PR, mål og evt en øvelse fra en lagret økt basert på dato
+
+5. Kunne kopiere en bestemt treningsøkt over til en ny mal. Hver mal skal kunne registreres med et navn og kunne brukes til å registrere en ny treningsøkt.
+ - Kan hente øvelsene fra den valgte økten og lagre en ny rad i mal-tabellen som får relasjon til de samme øvelsene. Kan bruke malen til å gjøre det samme for en ny økt når økt skal opprettes fra mal
+
+6. Se sammenhengen mellom resultater og sin egen form eller spesifikke treningsforhold.
+ - Dette kan hentes fra økt-tabellen
+
+7. Lese treningsnotater samlet i en logg.
+ - Notatene fra flere økter kan hentes ut sammen med dato
+
+8. Legge til, omorganisere og slette øvelser, grupper og delgrupper.
+ - Dette kan gjøres i øvelse og øvelsesgruppe og relasjonstabellene mellom disse
