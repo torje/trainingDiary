@@ -1,0 +1,25 @@
+﻿1. Registrere hvilke øvelser man har gjort under en bestemt treningsøkt, samt hvordan selve treningen har gått.
+ - exerciseSessionRelation tillater å lagre hvilke øvelser som er i en økt. Resultatet av treningen blir lagret i session.
+
+2. Holde oversikt over kjente øvelser, sette opp nye mål, og vite hvilke mål man har hatt.
+ - Kjente øvelser lagres i exercise. Mål lagres i goal, som inneholder bruker og øvelse
+
+3. Se progresjon for en bestemt øvelse over en periode, samt hvilke mål man har hatt.
+ - Progresjon kan sees i personalBest. Tidligere mål finner man i goal.
+
+4. Se differensen mellom et bestemt resultat og det beste resultatet i løpet av siste uke, måned
+eller tre måneder, samt forskjellen mellom det og målet som har vært aktivt i den siste perioden.
+ - Sammenligning av personalBest, goal og data fra en tidligere exercise basert på dato.
+
+5. Kunne kopiere en bestemt treningsøkt over til en ny mal. Hver mal skal kunne registreres med et navn og kunne brukes til å registrere en ny treningsøkt.
+ - Øvelser fra en bestemt session kan legges i templateExerciseRelation til en ny exerciseTemplate. På samme måte kan man populere en exerciseSessionRelation
+   for en ny exerciseSession med øvelsene fra templateExerciseRelation.
+
+6. Se sammenhengen mellom resultater og sin egen form eller spesifikke treningsforhold.
+ - session inneholder detaljer om forhold og egen form.
+
+7. Lese treningsnotater samlet i en logg.
+ - session inneholder notater (note) som kan hentes ut og sorteres på dato.
+
+8. Legge til, omorganisere og slette øvelser, grupper og delgrupper.
+ - exercise har cascade støtte for update og delete, det samme gjelder for exerciseGroup (som kan virke som en delmengde av seg selv).
