@@ -1,4 +1,4 @@
-package base;
+package trainingdiary.src.base;
 
 public class Main {
 
