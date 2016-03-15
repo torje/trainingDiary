@@ -1,5 +1,12 @@
 package trainingdiary.src.base;
 
+
+import java.time.LocalDate;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -10,9 +17,10 @@ import javafx.beans.property.StringProperty;
 public class Session {
 
 	private StringProperty name;
-	private String form;
-	private String result;
-	private String exercise;
+	private StringProperty form;
+	private StringProperty result;
+	private StringProperty exercise;
+	
 	
 	/** 
 	 * Constructor that makes a new session
@@ -21,32 +29,36 @@ public class Session {
 	 * @param users result string from 1 to 10
 	 * @param string that is a list of exercises
 	 */
-	public Session(String name, String form, String result, String exercise){
+	public Session(String name, String form, String result, String exercise) {
+		super();
 		this.name = new SimpleStringProperty(name);
-		this.form = form;
-		this.result = result;
-		this.exercise = exercise;
+		this.form = new SimpleStringProperty(form);
+		this.result = new SimpleStringProperty(result);
+		this.exercise = new SimpleStringProperty(exercise);
 	}
 
 
-	public StringProperty nameProperty() {
-		return name;
+	public String getName() {
+		return name.get();
 	}
 
 
 	public String getForm() {
-		return form;
+		return form.get();
 	}
 
 
 	public String getResult() {
-		return result;
+		return result.get();
 	}
 
 
 	public String getExercise() {
-		return exercise;
+		return exercise.get();
 	}
+	
+	
+	
 	
 	
 	

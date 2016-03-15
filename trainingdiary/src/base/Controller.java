@@ -1,56 +1,83 @@
 package trainingdiary.src.base;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import trainingdiary.src.base.Session;
 import trainingdiary.src.base.Main;
 
-public class Controller {
+public class Controller implements Initializable {
 	
-	private Main main;
+	public Button SaveButton;
+	
+	//List with all inputs
+	public TextArea list;
+	public TextField sessionName;
+	public ComboBox formInn;
+	public ComboBox resultInn;
+	public DatePicker date;
+	public TextField from;
+	public TextField end;
+	public RadioButton gain;
+	public RadioButton condition;
+	
+	
+	//Regex for timedate
+	String timeRegex = "^(1?[0-9]|2[0-3]):[0-5][0-9]$";
 	
 	/*
 	 * Creates the table where we push the info from the db
 	 */
 	@FXML
-	private TableView<Session> sessionTable;
+	private TableView<Session> tableID;
 	@FXML
-	private TableColumn<Session, String> nameCol;
+	private TableColumn<Session, String> name;
 	@FXML
-	private TableColumn<Session, String> formCol;
+	private TableColumn<Session, String> form;
 	@FXML
-	private TableColumn<Session, String> resultCol;
+	private TableColumn<Session, String> result;
 	@FXML
-	private TableColumn<Session, String> exerciseCol;
+	private TableColumn<Session, String> exercise;
 
-	public Button SaveButton;
-	String timeRegex = "^(1?[0-9]|2[0-3]):[0-5][0-9]$";
-	
 	
 	/*
-	 * Initializes the controller class. This is loaded automaticly
+	 * Makes the arraylist that pushes to the table
+	 * use new Session(String nameOfSession, String Form, String Result, String listOfexercises)
 	 */
-	public void initialize(){
-		nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-	}
+	ObservableList<Session> data = FXCollections.observableArrayList(
+			//Example
+			new Session("Markloft", "8", "8", "Kneboy")
+			//TODO create some sort off script to add a new session for each dbrow
+		);
 	
 	/*
-	 * Called my main to set observerlist
+	 * Sets the table
 	 */
-	public void setMain(Main main){
-		this.main = main;
-		sessionTable.setItems(main.getSessionData());
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		name.setCellValueFactory(new PropertyValueFactory<Session, String>("name"));
+		form.setCellValueFactory(new PropertyValueFactory<Session, String>("form"));
+		result.setCellValueFactory(new PropertyValueFactory<Session, String>("result"));
+		exercise.setCellValueFactory(new PropertyValueFactory<Session, String>("exercise"));
+		tableID.setItems(data);
 	}
 	
 	
@@ -60,6 +87,7 @@ public class Controller {
 	public void handleButton(){
 		
 		System.out.print("hey");
+		//TODO get the vaules off the field and push it to db
 		
 		
 	}
@@ -74,6 +102,8 @@ public class Controller {
 		int minutes = Integer.parseInt(val.substring(3,5));
 		return LocalTime.of(hour, minutes);
 	}
+
+	
 	
 	
 	
