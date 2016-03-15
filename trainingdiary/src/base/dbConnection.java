@@ -107,6 +107,7 @@ public class dbConnection {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+        return conn;
     }
 
     public String getData(Connection conn){
