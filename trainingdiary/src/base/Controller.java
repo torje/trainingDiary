@@ -15,7 +15,9 @@ public class Controller {
 	public Button SaveButton;
 
 	
-	
+	/** 
+	 * Triggers when save in diary is pressed
+	 */
 	public void handleButton(){
 		
 		System.out.print("hey");
