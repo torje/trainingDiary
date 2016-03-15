@@ -1,2 +1,5 @@
 .idea
 .DSStore
+trainingdiary/out/
+.classpath
+.project
