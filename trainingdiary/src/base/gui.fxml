@@ -11,13 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<<<<<<< HEAD
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trainingdiary.src.base.Controller">
-=======
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="base.Controller">
->>>>>>> 136dd4f011499c165ece33fdc16332a68442dc3a
    <children>
-      <SplitPane dividerPositions="0.40601503759398494" layoutX="473.0" layoutY="213.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.5" layoutX="473.0" layoutY="213.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="317.0">
                <children>
@@ -75,10 +71,10 @@
                <children>
                   <TableView layoutX="149.0" layoutY="166.0" prefHeight="598.0" prefWidth="430.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="109.0" text="Name" />
+                      <TableColumn fx:id="nameCol" prefWidth="109.0" text="Name" />
                       <TableColumn prefWidth="57.0" text="Form" />
                         <TableColumn prefWidth="73.0" text="Result" />
-                        <TableColumn prefWidth="229.0" text="Exercises" />
+                        <TableColumn prefWidth="154.0" text="Exercises" />
                     </columns>
                   </TableView>
                </children>
