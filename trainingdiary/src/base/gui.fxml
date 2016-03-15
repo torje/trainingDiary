@@ -13,9 +13,9 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trainingdiary.src.base.Controller">
    <children>
-      <Button fx:id="submit" layoutX="808.0" layoutY="847.0" mnemonicParsing="false" onAction="#handleButton" text="Button" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <ToggleButton layoutX="14.0" layoutY="124.0" mnemonicParsing="false" text="press me" />
-      <ComboBox fx:id="exType" layoutX="14.0" layoutY="67.0" prefHeight="39.0" prefWidth="174.0" promptText="Exercise Type">
+      <Button fx:id="submit" layoutX="808.0" layoutY="847.0" mnemonicParsing="false" onAction="#handleButton" text="Save to diary" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <ToggleButton layoutX="34.0" layoutY="93.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="95.0" />
+      <ComboBox fx:id="exType" layoutX="14.0" layoutY="53.0" prefHeight="39.0" prefWidth="174.0" promptText="Exercise Type">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Styrke" />
@@ -23,5 +23,8 @@
         </FXCollections>
       </items>
     </ComboBox>
+      <Label layoutX="14.0" layoutY="99.0" text="Ute:" />
+      <TextArea layoutX="14.0" layoutY="464.0" prefHeight="122.0" prefWidth="200.0" promptText="Desctiption of Session" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+      <TextField layoutX="14.0" layoutY="14.0" promptText="Name of Session" />
    </children>
 </AnchorPane>
