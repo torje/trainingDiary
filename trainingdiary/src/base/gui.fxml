@@ -11,55 +11,75 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trainingdiary.src.base.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trainingdiary.src.base.Controller">
    <children>
-      <Button fx:id="submit" layoutX="808.0" layoutY="847.0" mnemonicParsing="false" onAction="#handleButton" text="Save to diary" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <ToggleButton layoutX="34.0" layoutY="93.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="95.0" />
-      <ComboBox fx:id="exType" layoutX="14.0" layoutY="53.0" prefHeight="39.0" prefWidth="174.0" promptText="Exercise Type">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="Styrke" />
-          <String fx:value="Kondisjon" />
-        </FXCollections>
-      </items>
-    </ComboBox>
-      <Label layoutX="14.0" layoutY="99.0" text="Ute:" />
-      <TextArea layoutX="14.0" layoutY="464.0" prefHeight="122.0" prefWidth="200.0" promptText="Desctiption of Session" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-      <TextField layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="262.0" promptText="Name of Session" />
-      <DatePicker layoutX="297.0" layoutY="14.0" prefHeight="39.0" prefWidth="293.0" promptText="Date of Session" />
-      <TextField layoutX="297.0" layoutY="53.0" prefHeight="39.0" prefWidth="149.0" promptText="From 00:00" />
-      <TextField layoutX="444.0" layoutY="53.0" prefHeight="39.0" prefWidth="149.0" promptText="End 00:00" />
-      <ComboBox fx:id="form" layoutX="14.0" layoutY="142.0" prefHeight="39.0" prefWidth="107.0" promptText="Form">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="1" />
-          <String fx:value="2" />
-          <String fx:value="3" />
-          <String fx:value="4" />
-          <String fx:value="5" />
-          <String fx:value="6" />
-          <String fx:value="7" />
-          <String fx:value="8" />
-          <String fx:value="9" />
-          <String fx:value="10" />
-        </FXCollections>
-      </items>
-    </ComboBox>
-    <ComboBox fx:id="shape" layoutX="121.0" layoutY="142.0" prefHeight="39.0" prefWidth="113.0" promptText="Shape">
-      <items>
-        <FXCollections fx:factory="observableArrayList">
-          <String fx:value="1" />
-          <String fx:value="2" />
-          <String fx:value="3" />
-          <String fx:value="4" />
-          <String fx:value="5" />
-          <String fx:value="6" />
-          <String fx:value="7" />
-          <String fx:value="8" />
-          <String fx:value="9" />
-          <String fx:value="10" />
-        </FXCollections>
-      </items>
-    </ComboBox>
+      <SplitPane dividerPositions="0.40601503759398494" layoutX="473.0" layoutY="213.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="317.0">
+               <children>
+                  <TextArea layoutX="14.0" layoutY="238.0" prefHeight="122.0" prefWidth="200.0" promptText="List off exercises" />
+                  <Button fx:id="submit" layoutX="14.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleButton" text="Save to diary" AnchorPane.bottomAnchor="187.0" AnchorPane.rightAnchor="178.0" />
+                  <ComboBox fx:id="exType" layoutX="14.0" layoutY="53.0" prefHeight="39.0" prefWidth="174.0" promptText="Exercise Type">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Styrke" />
+                      <String fx:value="Kondisjon" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                  <Label layoutX="213.0" layoutY="59.0" text="Ute:" />
+                  <TextField layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="262.0" promptText="Name of Session" />
+                  <DatePicker layoutX="14.0" layoutY="146.0" prefHeight="39.0" prefWidth="293.0" promptText="Date of Session" />
+                  <TextField layoutX="14.0" layoutY="185.0" prefHeight="39.0" prefWidth="149.0" promptText="From 00:00" />
+                  <TextField layoutX="159.0" layoutY="185.0" prefHeight="39.0" prefWidth="149.0" promptText="End 00:00" />
+                  <ComboBox fx:id="form" layoutX="126.0" layoutY="92.0" prefHeight="39.0" prefWidth="107.0" promptText="Form">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="1" />
+                      <String fx:value="2" />
+                      <String fx:value="3" />
+                      <String fx:value="4" />
+                      <String fx:value="5" />
+                      <String fx:value="6" />
+                      <String fx:value="7" />
+                      <String fx:value="8" />
+                      <String fx:value="9" />
+                      <String fx:value="10" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                <ComboBox fx:id="shape" layoutX="14.0" layoutY="92.0" prefHeight="39.0" prefWidth="113.0" promptText="Shape">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="1" />
+                      <String fx:value="2" />
+                      <String fx:value="3" />
+                      <String fx:value="4" />
+                      <String fx:value="5" />
+                      <String fx:value="6" />
+                      <String fx:value="7" />
+                      <String fx:value="8" />
+                      <String fx:value="9" />
+                      <String fx:value="10" />
+                    </FXCollections>
+                  </items>
+                </ComboBox>
+                  <CheckBox layoutX="243.0" layoutY="59.0" mnemonicParsing="false" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView layoutX="149.0" layoutY="166.0" prefHeight="598.0" prefWidth="430.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="109.0" text="Name" />
+                      <TableColumn prefWidth="57.0" text="Form" />
+                        <TableColumn prefWidth="73.0" text="Result" />
+                        <TableColumn prefWidth="229.0" text="Exercises" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>
