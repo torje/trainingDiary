@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 
 public class Controller {
 
-	public Button LagreKnapp;
+	public Button SaveButton;
 
 	
 	
