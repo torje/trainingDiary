@@ -1,4 +1,4 @@
-package trainingdiary.src.base;
+package base;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -7,7 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+<<<<<<< HEAD
 import trainingdiary.src.base.*;
+=======
+
+import java.sql.Connection;
+
+>>>>>>> 136dd4f011499c165ece33fdc16332a68442dc3a
 
 public class Main extends Application {
 	
@@ -25,7 +31,10 @@ public class Main extends Application {
 		primaryStage.setTitle("gui");
 		primaryStage.setScene(new Scene(root, 800, 600));
 		primaryStage.show();
-		
+
+		dbConnection dbc = new dbConnection();
+		Connection con = dbc.getConnection();
+		dbc.getAllExercises(con);
 		
 	}
 		

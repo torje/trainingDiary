@@ -87,10 +87,10 @@ import java.sql.*;
 public class dbConnection {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/EMP";
+    static final String DB_URL = "jdbc:mysql://mysql.stud.ntnu.no/torjehoa_test";
 
     //  Database credentials
-    static final String USER = "username";
+    static final String USER = "torjehoa_test";
     static final String PASS = "drubadru";
 
     public Connection getConnection() {
@@ -156,7 +156,7 @@ public class dbConnection {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT exerciseName, description FROM Exercises";
+            sql = "SELECT exerciseName, description FROM Exercise";
             ResultSet rs = stmt.executeQuery(sql);
 
             //STEP 5: Extract data from result set
@@ -189,6 +189,47 @@ public class dbConnection {
                 conn.close();
         }catch(SQLException se){
             se.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+
+        Connection myConn = null;
+        Statement myStmt = null;
+        ResultSet myRs = null;
+
+        String user = USER;
+        String pass = PASS;
+
+        try {
+            // 1. Get a connection to database
+            myConn = DriverManager.getConnection(DB_URL, user, pass);
+
+            // 2. Create a statement
+            myStmt = myConn.createStatement();
+
+            // 3. Execute SQL query
+            myRs = myStmt.executeQuery("select * from exercise");
+
+            // 4. Process the result set
+            while (myRs.next()) {
+                System.out.println(myRs.getString("exerciseName") + ", " + myRs.getString("description"));
+            }
+
+        } catch (Exception exc) {
+            exc.printStackTrace();
+        } finally {
+            if (myRs != null) {
+                myRs.close();
+            }
+
+            if (myStmt != null) {
+                myStmt.close();
+            }
+
+            if (myConn != null) {
+                myConn.close();
+            }
         }
     }
 }
