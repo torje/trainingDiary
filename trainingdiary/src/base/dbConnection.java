@@ -98,6 +98,8 @@ public class DBConnection {
     private Connection conn = null;
 
 
+
+
     public DBConnection() {
 
         try {
@@ -207,14 +209,7 @@ public class DBConnection {
         }
     }
 
-    public void addSession(int id, int shape, int performance, ArrayList<Exercise> exercises){/*
-        sessionID 		INT NOT NULL,
-        shape                 	INT                 CHECK ( shape >=1 AND shape <= 10 ),
-                note                     VARCHAR(140),
-                performance          	INT                 CHECK ( shape >=1 AND shape <= 10 ),
-        start                 	DATETIME            NOT NULL,
-        end                  	DATETIME            NOT NULL,
-                userID*/
+    public void addSessionToDB(int id, int shape, int performance, ArrayList<Exercise> exercises){
         Statement stmt = null;
         try {
             System.out.println("Creating statement...");
@@ -224,9 +219,11 @@ public class DBConnection {
             System.out.println(sql);
             stmt.executeUpdate(sql);
 
-            sql = String.format("INSERT INTO session VALUES (%d, %d, 'blank note', %d, '2016-01-01 11:11:11', '2016-01-01 11:11:11', 0)", id, shape, performance);
-            System.out.println(sql);
-            stmt.executeUpdate(sql);
+            for (Exercise ex: exercises ){
+                sql = String.format("INSERT INTO exerciseSessionRelation VALUES (%d, %d)", id, ex.getId());
+                System.out.println(sql);
+                stmt.executeUpdate(sql);
+            }
 
             stmt.close();
         } catch (Exception e) {
@@ -239,6 +236,65 @@ public class DBConnection {
             }// nothing we can do
         }
 
+    }
+
+    public ArrayList<Session> getAllSessions(){
+        Statement stmt = null;
+        ArrayList<Session> sessions = new ArrayList<Session>();
+        ArrayList<Exercise> exercises;
+        ArrayList<Exercise> allExercises = this.getAllExercises();
+        try {
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "select * from session";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            //Extract data from result set
+            while(rs.next()){
+                //Retrieve by column name
+                int id = rs.getInt("sessionID");
+                int shape = rs.getInt("shape");
+                int performance = rs.getInt("performance");
+
+                //find exercises for this session
+                System.out.println("Creating statement...");
+                Statement stmt2 = conn.createStatement();
+                String sql2 = "select * from exerciseSessionRelation WHERE sessionID = " + id;
+                ResultSet rs2 = stmt.executeQuery(sql);
+                exercises = new ArrayList<Exercise>();
+
+                //STEP 5: Extract data from result set
+                while(rs2.next()){
+                    //Retrieve by column name
+                    int sessionID = rs2.getInt("sessionID");
+                    int exerciseID = rs2.getInt("exerciseID");
+                    for(Exercise ex : allExercises){
+                        if(ex.getId() == exerciseID){
+                            exercises.add(ex);
+                            break;
+                        }
+                    }
+                }
+                rs2.close();
+                stmt2.close();
+
+            }
+            rs.close();
+            stmt.close();
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(stmt!=null)
+                    stmt.close();
+            }catch(SQLException se2){
+            }// nothing we can do
+        }
+        return sessions;
     }
 
     public void closeConnection() {

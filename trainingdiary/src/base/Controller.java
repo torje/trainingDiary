@@ -28,11 +28,12 @@ import base.Main;
 public class Controller implements Initializable {
 	
 	public Button SaveButton;
+	private int count = 6;
 	
 	//List with all inputs
 	public TextField sessionName;
-	public ComboBox formInn;
-	public ComboBox resultInn;
+	public ComboBox<String> formInn;
+	public ComboBox<String> resultInn;
 	public DatePicker date;
 	public TextField from;
 	public TextField end;
@@ -66,7 +67,7 @@ public class Controller implements Initializable {
 	 */
 	ObservableList<Session> data = FXCollections.observableArrayList(
 			//Example
-			new Session("Markloft", "8", "8", "Kneboy, hilgu , hui ho , ghiu gig , giu giug")
+			//new Session("Markloft", "8", "8", "Kneboy, hilgu , hui ho , ghiu gig , giu giug")
 			//TODO create some sort off script to add a new session for each dbrow
 		);
 	
@@ -92,9 +93,27 @@ public class Controller implements Initializable {
 		System.out.print("hey");
 		//TODO get the vaules off the field and push it to db
 
-		DBConnection dbc = new DBConnection();
 
-		
+
+		DBConnection dbc = new DBConnection();
+		ArrayList<Exercise> exercises = dbc.getAllExercises();
+
+		Exercise ex = new Exercise(0, "", "");
+		for (Exercise e : exercises){
+			if (e.getExName() == exerciseList.getValue()){
+				ex = e;
+			}
+		}
+		ArrayList<Exercise> sesExs = new ArrayList<Exercise>();
+		sesExs.add(ex);
+
+		dbc.addSessionToDB(count, Integer.parseInt(formInn.getValue()), Integer.parseInt(resultInn.getValue()), sesExs);
+		count ++ ;
+		ArrayList<Session> sessions = dbc.getAllSessions();
+		for (Session s : sessions){
+			System.out.println(s.getExercisesAsString());
+		}
+
 	}
 
 	//setting time fields

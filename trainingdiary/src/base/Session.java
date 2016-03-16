@@ -2,6 +2,7 @@ package base;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -16,10 +17,10 @@ import javafx.beans.property.StringProperty;
  */
 public class Session {
 
-	private StringProperty name;
-	private StringProperty form;
-	private StringProperty result;
-	private StringProperty exercise;
+	private String name;
+	private String form;
+	private String result;
+	private ArrayList<Exercise> exercises;
 	
 	
 	/** 
@@ -29,40 +30,36 @@ public class Session {
 	 * @param users result string from 1 to 10
 	 * @param string that is a list of exercises
 	 */
-	public Session(String name, String form, String result, String exercise) {
+	public Session(String name, String form, String result, ArrayList<Exercise> exercises) {
 		super();
-		this.name = new SimpleStringProperty(name);
-		this.form = new SimpleStringProperty(form);
-		this.result = new SimpleStringProperty(result);
-		this.exercise = new SimpleStringProperty(exercise);
+		this.name = name;
+		this.form = form;
+		this.result = result;
+		this.exercises = exercises;
 	}
 
 
 	public String getName() {
-		return name.get();
+		return name;
 	}
-
 
 	public String getForm() {
-		return form.get();
+		return form;
 	}
-
 
 	public String getResult() {
-		return result.get();
+		return result;
 	}
 
-
-	public String getExercise() {
-		return exercise.get();
+	public ArrayList<Exercise> getExercises() {
+		return exercises;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public String getExercisesAsString(){
+		String str = "";
+		for (Exercise ex : exercises){
+			str += ex.getExName();
+		}
+		return str;
+	}
 }
