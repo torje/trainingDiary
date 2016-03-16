@@ -1,4 +1,4 @@
-package base;
+//package base;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -22,8 +22,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import base.Session;
-import base.Main;
+//import base.Session;
+//import base.Main;
 
 public class Controller implements Initializable {
 	
@@ -31,7 +31,10 @@ public class Controller implements Initializable {
 	private int count = 6;
 	
 	//List with all inputs
-	public TextField sessionName;
+	@FXML
+	public TextField sessionID;
+
+
 	public ComboBox<String> formInn;
 	public ComboBox<String> resultInn;
 	public DatePicker date;
@@ -80,18 +83,40 @@ public class Controller implements Initializable {
 		form.setCellValueFactory(new PropertyValueFactory<Session, String>("form"));
 		result.setCellValueFactory(new PropertyValueFactory<Session, String>("result"));
 		exercise.setCellValueFactory(new PropertyValueFactory<Session, String>("exercise"));
-		tableID.setItems(data);
+		updateTableID();
 		exerciseList.getItems().addAll(this.getExerciseList());
 	}
-	
+	private void updateTableID( ){
+
+		ArrayList<Session> als = new DBConnection().getAllSessions();
+		data.setAll(als);
+		tableID.setItems(data);
+	}
 	
 	/** 
 	 * Triggers when save in diary is pressed
 	 */
+
+	private void addExerciseToSession(){
+		String fieldContent  = sessionID.getText();
+		int sesid;
+		try {
+			sesid = Integer.parseInt(fieldContent);
+		}catch( Exception e) {
+			System.out.println("Invalid format, I want a number! ");
+			return;
+		}
+		for ( Session session: data) {
+			if ( Integer.parseInt(session.getName()) == sesid) {
+				System.out.println(session.getName() );
+			}
+		}
+	}
+
 	public void handleButton(){
-		
-		System.out.print("hey");
+
 		//TODO get the vaules off the field and push it to db
+
 
 
 
@@ -107,13 +132,14 @@ public class Controller implements Initializable {
 		ArrayList<Exercise> sesExs = new ArrayList<Exercise>();
 		sesExs.add(ex);
 
-		dbc.addSessionToDB(count, Integer.parseInt(formInn.getValue()), Integer.parseInt(resultInn.getValue()), sesExs);
+		//dbc.addSessionToDB(count, Integer.parseInt(formInn.getValue()), Integer.parseInt(resultInn.getValue()), sesExs);
 		count ++ ;
 		ArrayList<Session> sessions = dbc.getAllSessions();
 		for (Session s : sessions){
-			System.out.println(s.getExercisesAsString());
+			//System.out.println(s.getExercisesAsString());
 		}
-
+		updateTableID();
+		addExerciseToSession();
 	}
 
 	//setting time fields
@@ -130,6 +156,7 @@ public class Controller implements Initializable {
 
 	//gets exercises from database
 	private ArrayList<String> getExerciseList() {
+
 		DBConnection dbc = new DBConnection();
 		ArrayList<Exercise> exercises = dbc.getAllExercises();
 		ArrayList<String> exNames = new ArrayList<String>();

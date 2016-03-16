@@ -1,4 +1,4 @@
-package base;
+//package base;
 
 import javax.swing.JOptionPane;
 import java.sql.*;
@@ -52,7 +52,7 @@ public class JDBCCreateTable{
 		
 
 		try {
-			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");	//Class.forName("myDriver.ClassName"); ?
+			Class.forName("org.mariadb.jdbc.Driver");	//Class.forName("myDriver.ClassName"); ?
 
 		} catch(ClassNotFoundException e) {
 			System.err.print("ClassNotFoundException: ");

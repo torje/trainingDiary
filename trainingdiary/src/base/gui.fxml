@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="base.Controller">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="473.0" layoutY="213.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -27,7 +27,7 @@
                   <Button fx:id="submit" layoutX="14.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleButton" text="Save to diary" AnchorPane.bottomAnchor="143.0" AnchorPane.rightAnchor="253.0" />
                   
                   <Label layoutX="270.0" layoutY="118.0" text="Outside:" />
-                  <TextField layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="262.0" promptText="Name of Session" />
+                  <TextField fx:id="sessionID" layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="262.0" promptText="ID of session" />
                   <DatePicker fx:id="date" layoutX="15.0" layoutY="154.0" prefHeight="39.0" prefWidth="295.0" promptText="Date of Session" />
                   <TextField fx:id="from" layoutX="14.0" layoutY="193.0" prefHeight="39.0" prefWidth="149.0" promptText="From 00:00" />
                   <TextField fx:id="end" layoutX="163.0" layoutY="193.0" prefHeight="39.0" prefWidth="149.0" promptText="End 00:00" />
@@ -76,8 +76,8 @@
                <children>
                   <TableView fx:id="tableID" layoutX="149.0" layoutY="166.0" prefHeight="598.0" prefWidth="430.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="name" prefWidth="109.0" text="Name" />
-                      <TableColumn fx:id="form" prefWidth="57.0" text="Form" />
+                        <TableColumn fx:id="name" prefWidth="109.0" text="Name" />
+                        <TableColumn fx:id="form" prefWidth="57.0" text="Form" />
                         <TableColumn fx:id="result" prefWidth="73.0" text="Result" />
                         <TableColumn fx:id="exercise" prefWidth="154.0" text="Exercises" />
                     </columns>

@@ -1,4 +1,4 @@
-package base;
+//package base;
 
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class Session {
 	private String name;
 	private String form;
 	private String result;
-	private ArrayList<Exercise> exercises;
+	private String exercises;
 	
 	
 	/** 
@@ -30,12 +30,14 @@ public class Session {
 	 * @param users result string from 1 to 10
 	 * @param string that is a list of exercises
 	 */
-	public Session(String name, String form, String result, ArrayList<Exercise> exercises) {
+    //public Session(String name, String form, String result, ArrayList<Exercise> exercises) {
+    public Session(String name, String form, String result, String exercises) {
 		super();
 		this.name = name;
 		this.form = form;
 		this.result = result;
-		this.exercises = exercises;
+        this.exercises = exercises;
+        //this.exercises = "shitface";
 	}
 
 
@@ -51,7 +53,12 @@ public class Session {
 		return result;
 	}
 
-	public ArrayList<Exercise> getExercises() {
+    public String getExercise() { return exercises;}
+    public String toString() {
+        return name + form + result +exercises;
+    }
+
+	/*public ArrayList<Exercise> getExercises() {
 		return exercises;
 	}
 
@@ -61,5 +68,5 @@ public class Session {
 			str += ex.getExName();
 		}
 		return str;
-	}
+	}*/
 }
