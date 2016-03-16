@@ -1,8 +1,9 @@
-package trainingdiary.src.base;
+package base;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -21,15 +22,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import trainingdiary.src.base.Session;
-import trainingdiary.src.base.Main;
+import base.Session;
+import base.Main;
 
 public class Controller implements Initializable {
 	
 	public Button SaveButton;
 	
 	//List with all inputs
-	public TextArea list;
 	public TextField sessionName;
 	public ComboBox formInn;
 	public ComboBox resultInn;
@@ -38,6 +38,8 @@ public class Controller implements Initializable {
 	public TextField end;
 	public RadioButton gain;
 	public RadioButton condition;
+	@FXML
+	private ComboBox<String> exerciseList;
 	
 	
 	//Regex for timedate
@@ -64,7 +66,7 @@ public class Controller implements Initializable {
 	 */
 	ObservableList<Session> data = FXCollections.observableArrayList(
 			//Example
-			new Session("Markloft", "8", "8", "Kneboy")
+			new Session("Markloft", "8", "8", "Kneboy, hilgu , hui ho , ghiu gig , giu giug")
 			//TODO create some sort off script to add a new session for each dbrow
 		);
 	
@@ -78,6 +80,7 @@ public class Controller implements Initializable {
 		result.setCellValueFactory(new PropertyValueFactory<Session, String>("result"));
 		exercise.setCellValueFactory(new PropertyValueFactory<Session, String>("exercise"));
 		tableID.setItems(data);
+		exerciseList.getItems().addAll(this.getExerciseList());
 	}
 	
 	
@@ -88,7 +91,9 @@ public class Controller implements Initializable {
 		
 		System.out.print("hey");
 		//TODO get the vaules off the field and push it to db
-		
+
+		DBConnection dbc = new DBConnection();
+
 		
 	}
 
@@ -103,26 +108,26 @@ public class Controller implements Initializable {
 		return LocalTime.of(hour, minutes);
 	}
 
+
+	//gets exercises from database
+	private ArrayList<String> getExerciseList() {
+		DBConnection dbc = new DBConnection();
+		ArrayList<Exercise> exercises = dbc.getAllExercises();
+		ArrayList<String> exNames = new ArrayList<String>();
+		for (Exercise exercise : exercises) {
+			System.out.println(exercise.getExName());
+			exNames.add(exercise.getExName());
+
+		}
+
+
+
+		return exNames;
+	}
+
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

@@ -1,5 +1,7 @@
 package base;
 import java.sql.*;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 /**
  * Created by Andrea on 15.03.2016.
@@ -84,7 +86,7 @@ import java.sql.*;
     reps                INT                     ,
 *
 * */
-public class dbConnection {
+public class DBConnection {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://mysql.stud.ntnu.no/torjehoa_test";
@@ -93,8 +95,10 @@ public class dbConnection {
     static final String USER = "torjehoa_test";
     static final String PASS = "drubadru";
 
-    public Connection getConnection() {
-        Connection conn = null;
+    private Connection conn = null;
+
+
+    public DBConnection() {
 
         try {
             //STEP 2: Register JDBC driver
@@ -107,10 +111,9 @@ public class dbConnection {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
-        return conn;
     }
 
-    public String getData(Connection conn){
+    public String getData(){
         Statement stmt = null;
         try {
             System.out.println("Creating statement...");
@@ -149,23 +152,24 @@ public class dbConnection {
         return "";
     }
 
-    public String getAllExercises(Connection conn){
+    public ArrayList<Exercise> getAllExercises(){
         Statement stmt = null;
-        String exercises = "";
+        ArrayList<Exercise> exercises = new ArrayList<Exercise>();
         try {
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT exerciseName, description FROM Exercise";
+            sql = "select * from exercise";
             ResultSet rs = stmt.executeQuery(sql);
 
             //STEP 5: Extract data from result set
             while(rs.next()){
                 //Retrieve by column name
+                int id = rs.getInt("exerciseID");
                 String name = rs.getString("exerciseName");
                 String desc = rs.getString("description");
 
-                exercises += name + " - " + desc + "\n";
+                exercises.add( new Exercise(id, name, desc) );
             }
             rs.close();
             stmt.close();
@@ -178,12 +182,66 @@ public class dbConnection {
             }catch(SQLException se2){
             }// nothing we can do
         }
-
-
         return exercises;
     }
 
-    public void closeConnection(Connection conn) {
+    public void addExerciseToDB(String exName, String exDesc, int id){
+        Statement stmt = null;
+        try {
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = String.format("INSERT INTO exercise VALUES (%d, '%s', '%s')", id, exName, exDesc);
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(stmt!=null)
+                    stmt.close();
+            }catch(SQLException se2){
+            }// nothing we can do
+        }
+    }
+
+    public void addSession(int id, int shape, int performance, ArrayList<Exercise> exercises){/*
+        sessionID 		INT NOT NULL,
+        shape                 	INT                 CHECK ( shape >=1 AND shape <= 10 ),
+                note                     VARCHAR(140),
+                performance          	INT                 CHECK ( shape >=1 AND shape <= 10 ),
+        start                 	DATETIME            NOT NULL,
+        end                  	DATETIME            NOT NULL,
+                userID*/
+        Statement stmt = null;
+        try {
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = String.format("INSERT INTO session VALUES (%d, %d, 'blank note', %d, '2016-01-01 11:11:11', '2016-01-01 11:11:11', 0)", id, shape, performance);
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+
+            sql = String.format("INSERT INTO session VALUES (%d, %d, 'blank note', %d, '2016-01-01 11:11:11', '2016-01-01 11:11:11', 0)", id, shape, performance);
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(stmt!=null)
+                    stmt.close();
+            }catch(SQLException se2){
+            }// nothing we can do
+        }
+
+    }
+
+    public void closeConnection() {
         try{
             if(conn!=null)
                 conn.close();
@@ -194,6 +252,8 @@ public class dbConnection {
 
     public static void main(String[] args) throws SQLException {
 
+    }
+/*
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
@@ -231,5 +291,5 @@ public class dbConnection {
                 myConn.close();
             }
         }
-    }
+    }*/
 }

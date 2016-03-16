@@ -1,4 +1,4 @@
-package trainingdiary.src.base;
+package base;
 
 
 import java.time.LocalDate;
